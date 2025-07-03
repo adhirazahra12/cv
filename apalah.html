@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <title>Kalkulator Sederhana</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background: #f2f2f2;
+            font-family: Arial, sans-serif;
+        }
+
+        .kalkulator {
+            background: #fff;
+            padding: 20px;
+            border-radius: 12px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+            width: 300px;
+        }
+
+        .layar {
+            width: 100%;
+            height: 50px;
+            margin-bottom: 10px;
+            text-align: right;
+            padding: 10px;
+            font-size: 24px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            box-sizing: border-box;
+        }
+
+        .tombol {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 10px;
+        }
+
+        .tombol button {
+            padding: 15px;
+            font-size: 18px;
+            border: none;
+            border-radius: 8px;
+            background: #007BFF;
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+
+        .tombol button:hover {
+            background: #0056b3;
+        }
+
+        .tombol .hapus {
+            background: #dc3545;
+        }
+
+        .tombol .hapus:hover {
+            background: #a71d2a;
+        }
+
+        .tombol .hitung {
+            background: #28a745;
+        }
+
+        .tombol .hitung:hover {
+            background: #1c7430;
+        }
+    </style>
+</head>
+<body>
+
+<div class="kalkulator">
+    <input type="text" id="layar" class="layar" readonly>
+    <div class="tombol">
+        <button onclick="tambah('7')">7</button>
+        <button onclick="tambah('8')">8</button>
+        <button onclick="tambah('9')">9</button>
+        <button onclick="hapusSatu()">DEL</button>
+
+        <button onclick="tambah('4')">4</button>
+        <button onclick="tambah('5')">5</button>
+        <button onclick="tambah('6')">6</button>
+        <button onclick="tambah('+')">+</button>
+
+        <button onclick="tambah('1')">1</button>
+        <button onclick="tambah('2')">2</button>
+        <button onclick="tambah('3')">3</button>
+        <button onclick="tambah('-')">-</button>
+
+        <button onclick="tambah('0')">0</button>
+        <button onclick="tambah('.')">.</button>
+        <button onclick="hitung()" class="hitung">=</button>
+        <button onclick="tambah('*')">*</button>
+
+        <button onclick="hapusSemua()" class="hapus">C</button>
+        <button onclick="tambah('/')">/</button>
+    </div>
+</div>
+
+<script>
+    function tambah(karakter) {
+        document.getElementById('layar').value += karakter;
+    }
+
+    function hapusSatu() {
+        let layar = document.getElementById('layar');
+        layar.value = layar.value.slice(0, -1);
+    }
+
+    function hapusSemua() {
+        document.getElementById('layar').value = '';
+    }
+
+    function hitung() {
+        try {
+            let hasil = eval(document.getElementById('layar').value);
+            document.getElementById('layar').value = hasil;
+        } catch {
+            alert('Input tidak valid!');
+        }
+    }
+</script>
+
+</body>
+</html>
